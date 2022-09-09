@@ -1,3 +1,15 @@
 body {
   background: gray;
 }
+
+.to-archive-button::after {
+  content: 'To archive button';
+}
+
+.from-archive-button::after {
+  content: 'From archive button';
+}
+
+.delete-button::after {
+  content: 'Delete button';
+}
