@@ -73,9 +73,12 @@ document
   .addEventListener('click', (event) => {
     showArchived = !showArchived;
 
-    event.target.className = showArchived
-      ? 'from-archive-button'
-      : 'to-archive-button';
+    event.target.classList.remove('from-archive-button');
+    event.target.classList.remove('to-archive-button');
+
+    event.target.classList.add(
+      showArchived ? 'from-archive-button' : 'to-archive-button'
+    );
 
     updateNotes();
   });

@@ -1,21 +1,21 @@
+:root {
+  --primary-color: rgb(126, 126, 126);
+  --primary-lighter-color: rgb(214, 214, 214);
+  --primary-lightest-color: rgb(247, 247, 247);
+}
+
 body {
-  background: gray;
+  margin: 0;
+  font-family: sans-serif;
 }
 
-.to-archive-button::after {
-  content: 'To archive button';
+#root {
+  max-width: 900px;
+  margin: 30px auto;
 }
 
-.from-archive-button::after {
-  content: 'From archive button';
-}
-
-.delete-button::after {
-  content: 'Delete button';
-}
-
-.edit-button::after {
-  content: 'Edit button';
+#root>* {
+  margin-bottom: 10px;
 }
 
 #note-form-background {
@@ -42,4 +42,88 @@ body {
   left: 50%;
 
   transform: translate(-50%, -50%);
+}
+
+.regular-table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.regular-table>thead {
+  background: var(--primary-color);
+  color: white;
+}
+
+.regular-table>tbody>tr:nth-child(even) {
+  background: var(--primary-lighter-color);
+}
+
+.regular-table>tbody>tr:nth-child(odd) {
+  background: var(--primary-lightest-color);
+}
+
+.regular-table th, .regular-table td {
+  padding: 5px 10px;
+
+  text-align: left;
+}
+
+.regular-table td {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.regular-button {
+  border: none;
+  background: var(--primary-color);
+  padding: 10px;
+  color: white;
+}
+
+#notes-table td:first-child, #summary-table td:first-child {
+  font-weight: bold;
+}
+
+#notes-table {
+  table-layout: fixed;
+}
+
+#notes-table th:nth-child(6),
+#notes-table th:nth-child(7),
+#notes-table th:nth-child(8) {
+  width: 20px;
+}
+
+.to-archive-button, .from-archive-button, .delete-button, .edit-button {
+  background: none;
+  background-size: contain;
+  padding: 0;
+  border: none;
+  height: 20px;
+  width: 100%;
+}
+
+.to-archive-button {
+  background-image: url("/images/archive_black_24dp.svg");
+}
+
+.from-archive-button {
+  background-image: url("/images/unarchive_black_24dp.svg");
+}
+
+.from-archive-button.white {
+  background-image: url("/images/unarchive_white_24dp.svg");
+}
+
+.to-archive-button.white {
+  background-image: url("/images/archive_white_24dp.svg");
+}
+
+.edit-button {
+  background-image: url("/images/edit_black_24dp.svg");
+}
+
+.delete-button {
+  background-image: url("/images/delete_black_24dp.svg");
 }
