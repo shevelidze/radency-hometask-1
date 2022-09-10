@@ -1,10 +1,7 @@
 import Category from './Category.js';
 import Note from './Note.js';
 import generateNoteElement from './generateNoteElement.js';
-
-function generateDatesString(dates) {
-  return dates.map((date) => date.toLocaleDateString()).join(', ');
-}
+import openNoteForm from './openNoteForm.js';
 
 const notes = [
   new Note(
@@ -12,6 +9,12 @@ const notes = [
     'Note #1 content',
     [new Date(), new Date()],
     Category.categories[0]
+  ),
+  new Note(
+    'Note #1',
+    'Note #1 content',
+    [new Date(), new Date()],
+    Category.categories[1]
   ),
 ];
 
@@ -28,14 +31,12 @@ function updateNotes() {
   notesTableBodyElement.append(
     ...notes
       .filter((note) => note.isArchived === showArchived)
-      .map((note) =>
+      .map((note, noteIndex) =>
         generateNoteElement({
-          name: note.name,
-          creationDate: note.creationDate.toLocaleDateString(),
-          category: note.category.name,
-          content: note.content,
-          dates: generateDatesString(note.dates),
-          isArchived: note.isArchived,
+          ...note.toRenderObject(),
+          editClickHandler: () => {
+            openNoteForm(noteIndex, notes, updateNotes);
+          },
           archiveClickHandler: () => {
             note.isArchived = !note.isArchived;
             updateNotes();
@@ -61,4 +62,10 @@ document
       : 'to-archive-button';
 
     updateNotes();
+  });
+
+document
+  .querySelector('#new-note-button')
+  .addEventListener('click', (event) => {
+    openNoteForm(null, notes, updateNotes);
   });

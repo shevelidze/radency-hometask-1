@@ -1,3 +1,11 @@
+function wrapIntoTd(element) {
+  const tdElement = document.createElement('td');
+
+  tdElement.append(element);
+
+  return tdElement;
+}
+
 export default function generateNoteElement({
   name,
   creationDate,
@@ -5,6 +13,7 @@ export default function generateNoteElement({
   content,
   dates,
   isArchived,
+  editClickHandler,
   deleteClickHandler,
   archiveClickHandler,
 }) {
@@ -18,13 +27,15 @@ export default function generateNoteElement({
     <td>${dates}</td>
   `;
 
+  const editButtonElement = document.createElement('button');
+
+  editButtonElement.classList = 'edit-button';
+  editButtonElement.addEventListener('click', editClickHandler);
+
   const deleteButtonElement = document.createElement('button');
 
   deleteButtonElement.classList = 'delete-button';
   deleteButtonElement.addEventListener('click', deleteClickHandler);
-
-  const deleteTdElement = document.createElement('td');
-  deleteTdElement.append(deleteButtonElement);
 
   const archiveButtonElement = document.createElement('button');
 
@@ -33,10 +44,11 @@ export default function generateNoteElement({
     : 'to-archive-button';
   archiveButtonElement.addEventListener('click', archiveClickHandler);
 
-  const archiveTdElement = document.createElement('td');
-  archiveTdElement.append(archiveButtonElement);
-
-  noteElement.append(archiveTdElement, deleteTdElement);
+  noteElement.append(
+    wrapIntoTd(editButtonElement),
+    wrapIntoTd(archiveButtonElement),
+    wrapIntoTd(deleteButtonElement)
+  );
 
   return noteElement;
 }

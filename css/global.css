@@ -13,3 +13,33 @@ body {
 .delete-button::after {
   content: 'Delete button';
 }
+
+.edit-button::after {
+  content: 'Edit button';
+}
+
+#note-form-background {
+  visibility: hidden;
+
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  background: rgba(0, 0, 0, 0.8);
+}
+
+#note-form-background.visible {
+  visibility: visible;
+}
+
+#note-form {
+  position: fixed;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+}
