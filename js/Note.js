@@ -1,6 +1,4 @@
-function generateDatesString(dates) {
-  return dates.map((date) => date.toLocaleDateString()).join(', ');
-}
+import { generateDatesString, generateDateString } from './datesString.js';
 
 export default class Note {
   constructor(name, content, dates, category) {
@@ -15,7 +13,7 @@ export default class Note {
   toRenderObject() {
     return {
       name: this.name,
-      creationDate: this.creationDate.toLocaleDateString(),
+      creationDate: generateDateString(this.creationDate),
       categoryName: this.category.name,
       content: this.content,
       dates: generateDatesString(this.dates),

@@ -13,8 +13,8 @@ export default function generateNoteFormElement({
   noteFormElement.id = 'note-form';
   noteFormElement.innerHTML = `
   <input type="text" placeholder="Name" name="name" required></input>
-  <input type="text" placeholder="Dates" name="dates" required></input>
-  <input type="text" placeholder="Content" name="content" required></input>
+  <input type="text" placeholder="Dates" name="dates"></input>
+  <input type="text" placeholder="Content" name="content"></input>
   <select name="categoryIndex">
     ${Category.categories.map(generateCategoryOption).join('')}
   </select>

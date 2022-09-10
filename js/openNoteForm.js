@@ -16,26 +16,37 @@ export default function openNoteForm(noteIndex, notes, updateNotes) {
   function submitHandler(event) {
     const formData = new FormData(event.target);
 
+    let validatedForm;
+
     try {
-      validateNoteForm(formData);
+      validatedForm = validateNoteForm(formData);
     } catch (e) {
-      if (e instanceof InvalidNoteFormError) alert(e.message);
-      else throw e;
+      if (e instanceof InvalidNoteFormError) {
+        alert(e.message);
+        return;
+      } else throw e;
     }
 
     if (typeof noteIndex === 'number') {
+      const note = notes[noteIndex];
+
+      note.name = validatedForm.name;
+      note.content = validatedForm.content;
+      note.dates = validatedForm.dates;
+      note.category = Category.categories[validatedForm.categoryIndex];
     } else {
       notes.push(
         new Note(
-          formData.get('name'),
-          formData.get('content'),
-          [],
-          Category.categories[parseInt(formData.get('categoryIndex'))]
+          validatedForm.name,
+          validatedForm.content,
+          validatedForm.dates,
+          Category.categories[validatedForm.categoryIndex]
         )
       );
     }
 
     updateNotes();
+    closeNoteForm();
   }
 
   const formGenerationParameters = {
