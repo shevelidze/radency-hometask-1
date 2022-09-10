@@ -2,6 +2,7 @@ import Category from './Category.js';
 import Note from './Note.js';
 import generateNoteElement from './generateNoteElement.js';
 import openNoteForm from './openNoteForm.js';
+import generateCategorySummaryElement from './generateCategorySummaryElement.js';
 
 const notes = [
   new Note(
@@ -21,13 +22,13 @@ const notes = [
 let showArchived = false;
 
 const notesTableBodyElement = document.querySelector('#notes-table-body');
+const summaryTableBodyElement = document.querySelector('#summary-table-body');
 
 function updateNotes() {
   if (showArchived) notesTableBodyElement.classList.add('show-archived');
   else notesTableBodyElement.classList.remove('show-archived');
 
   notesTableBodyElement.innerHTML = '';
-
   notesTableBodyElement.append(
     ...notes
       .filter((note) => note.isArchived === showArchived)
@@ -48,6 +49,21 @@ function updateNotes() {
         })
       )
   );
+
+  summaryTableBodyElement.innerHTML = '';
+  summaryTableBodyElement.append(
+    ...Category.categories.map((category) =>
+      generateCategorySummaryElement({
+        name: category.name,
+        activeNumber: notes.filter(
+          (note) => note.category === category && !note.isArchived
+        ).length,
+        archivedNumber: notes.filter(
+          (note) => note.category === category && note.isArchived
+        ).length,
+      })
+    )
+  );
 }
 
 updateNotes();
@@ -64,8 +80,6 @@ document
     updateNotes();
   });
 
-document
-  .querySelector('#new-note-button')
-  .addEventListener('click', (event) => {
-    openNoteForm(null, notes, updateNotes);
-  });
+document.querySelector('#new-note-button').addEventListener('click', () => {
+  openNoteForm(null, notes, updateNotes);
+});
