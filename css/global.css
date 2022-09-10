@@ -85,13 +85,9 @@ body {
   font-weight: bold;
 }
 
-#notes-table {
-  table-layout: fixed;
-}
-
-#notes-table th:nth-child(6),
 #notes-table th:nth-child(7),
-#notes-table th:nth-child(8) {
+#notes-table th:nth-child(8),
+#notes-table th:nth-child(9) {
   width: 20px;
 }
 
@@ -126,4 +122,12 @@ body {
 
 .delete-button {
   background-image: url("/images/delete_black_24dp.svg");
+}
+
+.category-icon {
+  width: 50px;
+}
+
+#notes-table th:first-child, #summary-table th:first-child {
+  width: 50px;
 }

@@ -18,6 +18,7 @@ export default class Note {
       content: this.content,
       dates: generateDatesString(this.dates),
       isArchived: this.isArchived,
+      categoryIconUrl: this.category.iconUrl,
     };
   }
 }

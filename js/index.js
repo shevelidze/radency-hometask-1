@@ -55,6 +55,7 @@ function updateNotes() {
     ...Category.categories.map((category) =>
       generateCategorySummaryElement({
         name: category.name,
+        iconUrl: category.iconUrl,
         activeNumber: notes.filter(
           (note) => note.category === category && !note.isArchived
         ).length,

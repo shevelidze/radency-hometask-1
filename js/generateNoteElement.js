@@ -7,6 +7,7 @@ function wrapIntoTd(element) {
 }
 
 export default function generateNoteElement({
+  categoryIconUrl,
   name,
   creationDate,
   categoryName,
@@ -20,6 +21,7 @@ export default function generateNoteElement({
   const noteElement = document.createElement('tr');
 
   noteElement.innerHTML = `
+    <td><img src=${categoryIconUrl} alt="Category icon" class="category-icon"></img></td>
     <td>${name}</td>
     <td>${creationDate}</td>
     <td>${categoryName}</td>
