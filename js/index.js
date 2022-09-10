@@ -8,15 +8,35 @@ const notes = [
   new Note(
     'Note #1',
     'Note #1 content',
-    [new Date(), new Date()],
+    [new Date('2022-03-02')],
     Category.categories[0]
   ),
+  new Note('Note #2', 'Note #2 content', [], Category.categories[1]),
   new Note(
-    'Note #1',
-    'Note #1 content',
-    [new Date(), new Date()],
+    'Note #3',
+    '',
+    [new Date('2023-09-09'), new Date('2023-09-10')],
+    Category.categories[2]
+  ),
+  new Note(
+    'Note #4',
+    'Note #4 content',
+    [
+      new Date('2022-10-10'),
+      new Date('2022-10-10'),
+      new Date('2022-10-10'),
+      new Date('2022-10-10'),
+    ],
+    Category.categories[2]
+  ),
+  new Note(
+    'Note #5',
+    'Note #5 content',
+    [new Date('2023-12-12')],
     Category.categories[1]
   ),
+  new Note('Note #6', '', [], Category.categories[0]),
+  new Note('Note #7', 'Note #7 content', [], Category.categories[1]),
 ];
 
 let showArchived = false;

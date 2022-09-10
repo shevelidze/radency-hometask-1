@@ -88,6 +88,10 @@ body {
   color: white;
 }
 
+#notes-table {
+  table-layout: fixed;
+}
+
 #notes-table td:first-child, #summary-table td:first-child {
   font-weight: bold;
 }
