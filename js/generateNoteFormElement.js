@@ -13,11 +13,10 @@ export default function generateNoteFormElement({
   noteFormElement.id = 'note-form';
   noteFormElement.innerHTML = `
   <input type="text" placeholder="Name" name="name" required class="regular-input"></input>
-  <input type="text" placeholder="Dates" name="dates" class="regular-input"></input>
-  <input type="text" placeholder="Content" name="content" class="regular-input"></input>
   <select name="categoryIndex" class="regular-input">
     ${Category.categories.map(generateCategoryOption).join('')}
   </select>
+  <textarea type="text" placeholder="Content" name="content" class="regular-input" rows="10" cols="50"></textarea>
   <input type="submit" class="regular-button"></input>
   `;
 

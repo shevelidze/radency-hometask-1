@@ -1,11 +1,12 @@
-import { generateDatesString, generateDateString } from './datesString.js';
+function findDates(string) {
+  return string.match(/\d+\/\d+\/\d+/g) || [];
+}
 
 export default class Note {
-  constructor(name, content, dates, category) {
+  constructor(name, content, category) {
     this.name = name;
     this.content = content;
     this.category = category;
-    this.dates = dates;
     this.creationDate = new Date();
     this.isArchived = false;
   }
@@ -13,10 +14,10 @@ export default class Note {
   toRenderObject() {
     return {
       name: this.name,
-      creationDate: generateDateString(this.creationDate),
+      creationDate: this.creationDate.toLocaleDateString(),
       categoryName: this.category.name,
       content: this.content,
-      dates: generateDatesString(this.dates),
+      dates: findDates(this.content).join(', '),
       isArchived: this.isArchived,
       categoryIconUrl: this.category.iconUrl,
     };

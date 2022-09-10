@@ -1,4 +1,3 @@
-import { parseDates, InvalidDateError } from './datesString.js';
 import Category from './Category.js';
 
 export class InvalidNoteFormError extends Error {
@@ -9,20 +8,10 @@ export class InvalidNoteFormError extends Error {
 
 export default function validateNoteForm(formData) {
   const name = formData.get('name');
-  const datesString = formData.get('dates');
   const content = formData.get('content');
   const categoryIndexString = formData.get('categoryIndex');
 
   const result = { name, content };
-
-  if (datesString.length > 0) {
-    try {
-      result.dates = parseDates(datesString);
-    } catch (e) {
-      if (e instanceof InvalidDateError) throw new InvalidNoteFormError();
-      else throw e;
-    }
-  } else result.dates = [];
 
   result.categoryIndex = parseInt(categoryIndexString);
 

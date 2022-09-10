@@ -32,14 +32,12 @@ export default function openNoteForm(noteIndex, notes, updateNotes) {
 
       note.name = validatedForm.name;
       note.content = validatedForm.content;
-      note.dates = validatedForm.dates;
       note.category = Category.categories[validatedForm.categoryIndex];
     } else {
       notes.push(
         new Note(
           validatedForm.name,
           validatedForm.content,
-          validatedForm.dates,
           Category.categories[validatedForm.categoryIndex]
         )
       );

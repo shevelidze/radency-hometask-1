@@ -6,37 +6,25 @@ import generateCategorySummaryElement from './generateCategorySummaryElement.js'
 
 const notes = [
   new Note(
-    'Note #1',
-    'Note #1 content',
-    [new Date('2022-03-02')],
+    'Shopping',
+    'Go shopping on 02/03/2022 or 05/03/2022.',
     Category.categories[0]
   ),
-  new Note('Note #2', 'Note #2 content', [], Category.categories[1]),
+  new Note('Random thought', 'Random thought #1', Category.categories[1]),
   new Note(
-    'Note #3',
-    '',
-    [new Date('2023-09-09'), new Date('2023-09-10')],
-    Category.categories[2]
+    'Docktor',
+    'Date of the appointment is 01/01/2022.',
+    Category.categories[0]
   ),
+  new Note('Note #4', 'Note #4 content', Category.categories[2]),
+  new Note('Note #5', 'Note #5 content', Category.categories[1]),
   new Note(
-    'Note #4',
-    'Note #4 content',
-    [
-      new Date('2022-10-10'),
-      new Date('2022-10-10'),
-      new Date('2022-10-10'),
-      new Date('2022-10-10'),
-    ],
-    Category.categories[2]
+    'Dantist appointment',
+    `I’m gonna have a dentist appointment on the 3/5/2021,
+I moved it from 5/5/2021`,
+    Category.categories[0]
   ),
-  new Note(
-    'Note #5',
-    'Note #5 content',
-    [new Date('2023-12-12')],
-    Category.categories[1]
-  ),
-  new Note('Note #6', '', [], Category.categories[0]),
-  new Note('Note #7', 'Note #7 content', [], Category.categories[1]),
+  new Note('Note #7', 'Note #7 content', Category.categories[1]),
 ];
 
 let showArchived = false;
@@ -48,15 +36,15 @@ function updateNotes() {
   if (showArchived) notesTableBodyElement.classList.add('show-archived');
   else notesTableBodyElement.classList.remove('show-archived');
 
-  notesTableBodyElement.innerHTML = '';
+  notesTableBodyElement.textContent = '';
   notesTableBodyElement.append(
     ...notes
       .filter((note) => note.isArchived === showArchived)
-      .map((note, noteIndex) =>
+      .map((note) =>
         generateNoteElement({
           ...note.toRenderObject(),
           editClickHandler: () => {
-            openNoteForm(noteIndex, notes, updateNotes);
+            openNoteForm(notes.indexOf(note), notes, updateNotes);
           },
           archiveClickHandler: () => {
             note.isArchived = !note.isArchived;
@@ -70,7 +58,7 @@ function updateNotes() {
       )
   );
 
-  summaryTableBodyElement.innerHTML = '';
+  summaryTableBodyElement.textContent = '';
   summaryTableBodyElement.append(
     ...Category.categories.map((category) =>
       generateCategorySummaryElement({
