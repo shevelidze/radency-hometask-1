@@ -42,6 +42,13 @@ body {
   left: 50%;
 
   transform: translate(-50%, -50%);
+
+  background: white;
+  padding: 30px;
+
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
 }
 
 .regular-table {
@@ -130,4 +137,17 @@ body {
 
 #notes-table th:first-child, #summary-table th:first-child {
   width: 50px;
+}
+
+.regular-input {
+  --border-color: var(--primary-lighter-color);
+  border: none;
+  border-bottom: 2px solid var(--border-color);
+  background: var(--primary-lightest-color);
+  padding: 10px;
+}
+
+.regular-input:focus {
+  outline: none;
+  --border-color: var(--primary-color);
 }
